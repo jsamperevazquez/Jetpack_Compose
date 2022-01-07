@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -12,6 +15,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -23,7 +28,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PersonalData(name = "Angel")
+            JetpackComposeTheme() {
+                PersonalData(name = "Angel")
+            }
         }
     }
 
@@ -51,15 +58,19 @@ class MainActivity : ComponentActivity() {
             painter = painterResource(id = R.drawable.jetlogo),
             contentDescription = "Jetpack Compose logo",
             modifier = Modifier
-                .width(300.dp)
-                .height(300.dp)
+                .clip(CircleShape)
+                .size(85.dp)
+                .background(MaterialTheme.colors.primary)
+
         )
     }
 
     @Preview
     @Composable
-    fun PreviewPersonalData() {
-        PersonalData(name = "Angel")
+    fun PreviewComponents() {
+        JetpackComposeTheme() {
+            PersonalData(name = "Angel")
+        }
     }
 }
 
